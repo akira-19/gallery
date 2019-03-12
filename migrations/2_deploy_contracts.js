@@ -1,0 +1,5 @@
+var Gallery = artifacts.require("./Gallery");
+
+module.exports = function(deployer) {
+  deployer.deploy(Gallery);
+};
