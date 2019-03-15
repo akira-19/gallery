@@ -25,7 +25,7 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.0;\n\n\n/**\n * @title ERC165\n * @dev https://github.com/ethereum/EIPs/blob/master/EIPS/eip-165.md\n */\ninterface ERC165 {\n\n    /**\n     * @notice Query if a contract implements an interface\n     * @param _interfaceId The interface identifier, as specified in ERC-165\n     * @dev Interface identification is specified in ERC-165. This function\n     * uses less than 30,000 gas.\n     */\n    function supportsInterface(bytes4 _interfaceId)\n    external\n    view\n    returns (bool);\n}\n",
+  "source": "pragma solidity ^0.5.4;\n\n\n/**\n * @title ERC165\n * @dev https://github.com/ethereum/EIPs/blob/master/EIPS/eip-165.md\n */\ninterface ERC165 {\n\n    /**\n     * @notice Query if a contract implements an interface\n     * @param _interfaceId The interface identifier, as specified in ERC-165\n     * @dev Interface identification is specified in ERC-165. This function\n     * uses less than 30,000 gas.\n     */\n    function supportsInterface(bytes4 _interfaceId)\n    external\n    view\n    returns (bool);\n}\n",
   "sourcePath": "/Users/akira/ethereum/dapps/gallery/contracts/ERC1155/ERC165.sol",
   "ast": {
     "absolutePath": "/Users/akira/ethereum/dapps/gallery/contracts/ERC1155/ERC165.sol",
@@ -43,7 +43,7 @@
           "solidity",
           "^",
           "0.5",
-          ".0"
+          ".4"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:7"
@@ -165,7 +165,7 @@
           "solidity",
           "^",
           "0.5",
-          ".0"
+          ".4"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:7"
@@ -273,11 +273,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+    "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-12T07:23:22.706Z",
+  "updatedAt": "2019-03-12T18:35:14.459Z",
   "devdoc": {
     "details": "https://github.com/ethereum/EIPs/blob/master/EIPS/eip-165.md",
     "methods": {

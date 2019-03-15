@@ -371,7 +371,7 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.0;\n\nimport \"./IERC1155.sol\";\nimport \"./ERC165.sol\";\nimport \"./SafeMath.sol\";\n\n// Shows how you could wrap some allowance on top of ERC1155\n// A user would setApprovalForAll(true) for this wrapper in the target contract,\n// and the set the individual allowances here.\ncontract AllowanceWrapper is IERC1155, ERC165\n{\n    using SafeMath for uint256;\n\n    IERC1155 targetContract;\n\n    // from => operator => id => allowance\n    mapping(address => mapping(address => mapping(uint256 => uint256))) allowances;\n\n    /**\n        @dev Pass in the target contract.\n    */\n    constructor(address _target) public {\n        targetContract = IERC1155(_target);\n    }\n\n    /**\n        @dev MUST emit on any successful call to approve(address _spender, uint256 _id, uint256 _currentValue, uint256 _value)\n    */\n    event Approval(address indexed _owner, address indexed _spender, uint256 indexed _id, uint256 _oldValue, uint256 _value);\n\n    /**\n        @notice Allow other accounts/contracts to spend tokens on behalf of msg.sender\n        @dev MUST emit Approval event on success.\n        To minimize the risk of the approve/transferFrom attack vector (see https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/), this function will throw if the current approved allowance does not equal the expected _currentValue, unless _value is 0.\n        @param _spender      Address to approve\n        @param _id           ID of the Token\n        @param _currentValue Expected current value of approved allowance.\n        @param _value        Allowance amount\n    */\n    function approve(address _spender, uint256 _id, uint256 _currentValue, uint256 _value) external {\n\n        require(allowances[msg.sender][_spender][_id] == _currentValue);\n        allowances[msg.sender][_spender][_id] = _value;\n\n        emit Approval(msg.sender, _spender, _id, _currentValue, _value);\n    }\n\n    /**\n        @notice Queries the spending limit approved for an account\n        @param _id       ID of the Token\n        @param _owner    The owner allowing the spending\n        @param _spender  The address allowed to spend.\n        @return          The _spender's allowed spending balance of the Token requested\n     */\n    function allowance(address _owner, address _spender, uint256 _id) external view returns (uint256){\n        return allowances[_owner][_spender][_id];\n    }\n\n    // ERC1155\n\n    function supportsInterface(bytes4 _interfaceId)\n    external\n    view\n    returns (bool) {\n         ERC165(address(targetContract)).supportsInterface(_interfaceId);\n    }\n\n    /**\n        @notice Transfers value amount of an _id from the _from address to the _to addresses specified. Each parameter array should be the same length, with each index correlating.\n        @dev MUST emit Transfer event on success.\n        Caller must have sufficient allowance by _from for the _id/_value pair, or isApprovedForAll must be true.\n        Throws if `_to` is the zero address.\n        Throws if `_id` is not a valid token ID.\n        When transfer is complete, this function checks if `_to` is a smart contract (code size > 0). If so, it calls `onERC1155Received` on `_to` and throws if the return value is not `bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))`.\n        @param _from    source addresses\n        @param _to      target addresses\n        @param _id      ID of the Token\n        @param _value   transfer amounts\n        @param _data    Additional data with no specified format, sent in call to `_to`\n    */\n    function safeTransferFrom(address _from, address _to, uint256 _id, uint256 _value, bytes calldata _data) external /*payable*/  {\n        if (msg.sender != _from) {\n            allowances[_from][msg.sender][_id] = allowances[_from][msg.sender][_id].sub(_value);\n        }\n        targetContract.safeTransferFrom(_from, _to, _id, _value, _data);\n    }\n\n    /**\n        @notice Send multiple types of Tokens from a 3rd party in one transfer (with safety call)\n        @dev MUST emit Transfer event per id on success.\n        Caller must have a sufficient allowance by _from for each of the id/value pairs.\n        Throws on any error rather than return a false flag to minimize user errors.\n        @param _from    Source address\n        @param _to      Target address\n        @param _ids     Types of Tokens\n        @param _values  Transfer amounts per token type\n        @param _data    Additional data with no specified format, sent in call to `_to`\n    */\n    function safeBatchTransferFrom(address _from, address _to, uint256[] calldata _ids, uint256[] calldata _values, bytes calldata _data) external /*payable*/ {\n        if (msg.sender != _from) {\n            for (uint256 i = 0; i < _ids.length; ++i) {\n                allowances[_from][msg.sender][_ids[i]] = allowances[_from][msg.sender][_ids[i]].sub(_values[i]);\n            }\n        }\n        targetContract.safeBatchTransferFrom(_from, _to, _ids, _values, _data);\n    }\n\n    /**\n        @notice Get the balance of an account's Tokens\n        @param _owner  The address of the token holder\n        @param _id     ID of the Token\n        @return        The _owner's balance of the Token type requested\n     */\n    function balanceOf(address _owner, uint256 _id) external view returns (uint256) {\n        return targetContract.balanceOf(_owner, _id);\n    }\n\n    /**\n        @notice Enable or disable approval for a third party (\"operator\") to manage all of `msg.sender`'s tokens.\n        @dev MUST emit the ApprovalForAll event on success.\n    */\n    function setApprovalForAll(address /*_operator*/, bool /*_approved*/) external {\n        // Do this on the wrapped contract directly. We can't do this here\n        revert();\n    }\n\n    /**\n        @notice Queries the approval status of an operator for a given Token and owner\n        @param _owner     The owner of the Tokens\n        @param _operator  Address of authorized operator\n        @return           True if the operator is approved, false if not\n    */\n    function isApprovedForAll(address _owner, address _operator) view external returns (bool) {\n        return targetContract.isApprovedForAll(_owner, _operator);\n    }\n}\n",
+  "source": "pragma solidity ^0.5.4;\n\nimport \"./IERC1155.sol\";\nimport \"./ERC165.sol\";\nimport \"./SafeMath.sol\";\n\n// Shows how you could wrap some allowance on top of ERC1155\n// A user would setApprovalForAll(true) for this wrapper in the target contract,\n// and the set the individual allowances here.\ncontract AllowanceWrapper is IERC1155, ERC165\n{\n    using SafeMath for uint256;\n\n    IERC1155 targetContract;\n\n    // from => operator => id => allowance\n    mapping(address => mapping(address => mapping(uint256 => uint256))) allowances;\n\n    /**\n        @dev Pass in the target contract.\n    */\n    constructor(address _target) public {\n        targetContract = IERC1155(_target);\n    }\n\n    /**\n        @dev MUST emit on any successful call to approve(address _spender, uint256 _id, uint256 _currentValue, uint256 _value)\n    */\n    event Approval(address indexed _owner, address indexed _spender, uint256 indexed _id, uint256 _oldValue, uint256 _value);\n\n    /**\n        @notice Allow other accounts/contracts to spend tokens on behalf of msg.sender\n        @dev MUST emit Approval event on success.\n        To minimize the risk of the approve/transferFrom attack vector (see https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/), this function will throw if the current approved allowance does not equal the expected _currentValue, unless _value is 0.\n        @param _spender      Address to approve\n        @param _id           ID of the Token\n        @param _currentValue Expected current value of approved allowance.\n        @param _value        Allowance amount\n    */\n    function approve(address _spender, uint256 _id, uint256 _currentValue, uint256 _value) external {\n\n        require(allowances[msg.sender][_spender][_id] == _currentValue);\n        allowances[msg.sender][_spender][_id] = _value;\n\n        emit Approval(msg.sender, _spender, _id, _currentValue, _value);\n    }\n\n    /**\n        @notice Queries the spending limit approved for an account\n        @param _id       ID of the Token\n        @param _owner    The owner allowing the spending\n        @param _spender  The address allowed to spend.\n        @return          The _spender's allowed spending balance of the Token requested\n     */\n    function allowance(address _owner, address _spender, uint256 _id) external view returns (uint256){\n        return allowances[_owner][_spender][_id];\n    }\n\n    // ERC1155\n\n    function supportsInterface(bytes4 _interfaceId)\n    external\n    view\n    returns (bool) {\n         ERC165(address(targetContract)).supportsInterface(_interfaceId);\n    }\n\n    /**\n        @notice Transfers value amount of an _id from the _from address to the _to addresses specified. Each parameter array should be the same length, with each index correlating.\n        @dev MUST emit Transfer event on success.\n        Caller must have sufficient allowance by _from for the _id/_value pair, or isApprovedForAll must be true.\n        Throws if `_to` is the zero address.\n        Throws if `_id` is not a valid token ID.\n        When transfer is complete, this function checks if `_to` is a smart contract (code size > 0). If so, it calls `onERC1155Received` on `_to` and throws if the return value is not `bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))`.\n        @param _from    source addresses\n        @param _to      target addresses\n        @param _id      ID of the Token\n        @param _value   transfer amounts\n        @param _data    Additional data with no specified format, sent in call to `_to`\n    */\n    function safeTransferFrom(address _from, address _to, uint256 _id, uint256 _value, bytes calldata _data) external /*payable*/  {\n        if (msg.sender != _from) {\n            allowances[_from][msg.sender][_id] = allowances[_from][msg.sender][_id].sub(_value);\n        }\n        targetContract.safeTransferFrom(_from, _to, _id, _value, _data);\n    }\n\n    /**\n        @notice Send multiple types of Tokens from a 3rd party in one transfer (with safety call)\n        @dev MUST emit Transfer event per id on success.\n        Caller must have a sufficient allowance by _from for each of the id/value pairs.\n        Throws on any error rather than return a false flag to minimize user errors.\n        @param _from    Source address\n        @param _to      Target address\n        @param _ids     Types of Tokens\n        @param _values  Transfer amounts per token type\n        @param _data    Additional data with no specified format, sent in call to `_to`\n    */\n    function safeBatchTransferFrom(address _from, address _to, uint256[] calldata _ids, uint256[] calldata _values, bytes calldata _data) external /*payable*/ {\n        if (msg.sender != _from) {\n            for (uint256 i = 0; i < _ids.length; ++i) {\n                allowances[_from][msg.sender][_ids[i]] = allowances[_from][msg.sender][_ids[i]].sub(_values[i]);\n            }\n        }\n        targetContract.safeBatchTransferFrom(_from, _to, _ids, _values, _data);\n    }\n\n    /**\n        @notice Get the balance of an account's Tokens\n        @param _owner  The address of the token holder\n        @param _id     ID of the Token\n        @return        The _owner's balance of the Token type requested\n     */\n    function balanceOf(address _owner, uint256 _id) external view returns (uint256) {\n        return targetContract.balanceOf(_owner, _id);\n    }\n\n    /**\n        @notice Enable or disable approval for a third party (\"operator\") to manage all of `msg.sender`'s tokens.\n        @dev MUST emit the ApprovalForAll event on success.\n    */\n    function setApprovalForAll(address /*_operator*/, bool /*_approved*/) external {\n        // Do this on the wrapped contract directly. We can't do this here\n        revert();\n    }\n\n    /**\n        @notice Queries the approval status of an operator for a given Token and owner\n        @param _owner     The owner of the Tokens\n        @param _operator  Address of authorized operator\n        @return           True if the operator is approved, false if not\n    */\n    function isApprovedForAll(address _owner, address _operator) view external returns (bool) {\n        return targetContract.isApprovedForAll(_owner, _operator);\n    }\n}\n",
   "sourcePath": "/Users/akira/ethereum/dapps/gallery/contracts/ERC1155/ERC1155AllowanceWrapper.sol",
   "ast": {
     "absolutePath": "/Users/akira/ethereum/dapps/gallery/contracts/ERC1155/ERC1155AllowanceWrapper.sol",
@@ -389,7 +389,7 @@
           "solidity",
           "^",
           "0.5",
-          ".0"
+          ".4"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:2"
@@ -422,7 +422,7 @@
         "id": 440,
         "nodeType": "ImportDirective",
         "scope": 731,
-        "sourceUnit": 2156,
+        "sourceUnit": 2213,
         "src": "73:24:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -489,10 +489,10 @@
               "id": 445,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2155,
+              "referencedDeclaration": 2212,
               "src": "346:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$2155",
+                "typeIdentifier": "t_contract$_SafeMath_$2212",
                 "typeString": "library SafeMath"
               }
             },
@@ -964,7 +964,7 @@
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2519,
+                                  "referencedDeclaration": 2587,
                                   "src": "1723:3:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_magic_message",
@@ -1079,10 +1079,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2522,
-                        2523
+                        2590,
+                        2591
                       ],
-                      "referencedDeclaration": 2522,
+                      "referencedDeclaration": 2590,
                       "src": "1704:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1143,7 +1143,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2519,
+                              "referencedDeclaration": 2587,
                               "src": "1788:3:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -1262,7 +1262,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2519,
+                          "referencedDeclaration": 2587,
                           "src": "1848:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2019,7 +2019,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2519,
+                        "referencedDeclaration": 2587,
                         "src": "3698:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2131,7 +2131,7 @@
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2519,
+                                  "referencedDeclaration": 2587,
                                   "src": "3751:3:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_magic_message",
@@ -2267,7 +2267,7 @@
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 2519,
+                                      "referencedDeclaration": 2587,
                                       "src": "3788:3:2",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_magic_message",
@@ -2331,7 +2331,7 @@
                               "lValueRequested": false,
                               "memberName": "sub",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 2130,
+                              "referencedDeclaration": 2187,
                               "src": "3770:38:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -2689,7 +2689,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2519,
+                        "referencedDeclaration": 2587,
                         "src": "4687:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2807,7 +2807,7 @@
                                         "name": "msg",
                                         "nodeType": "Identifier",
                                         "overloadedDeclarations": [],
-                                        "referencedDeclaration": 2519,
+                                        "referencedDeclaration": 2587,
                                         "src": "4800:3:2",
                                         "typeDescriptions": {
                                           "typeIdentifier": "t_magic_message",
@@ -2997,7 +2997,7 @@
                                             "name": "msg",
                                             "nodeType": "Identifier",
                                             "overloadedDeclarations": [],
-                                            "referencedDeclaration": 2519,
+                                            "referencedDeclaration": 2587,
                                             "src": "4841:3:2",
                                             "typeDescriptions": {
                                               "typeIdentifier": "t_magic_message",
@@ -3088,7 +3088,7 @@
                                     "lValueRequested": false,
                                     "memberName": "sub",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 2130,
+                                    "referencedDeclaration": 2187,
                                     "src": "4823:42:2",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -3813,10 +3813,10 @@
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2524,
-                        2525
+                        2592,
+                        2593
                       ],
-                      "referencedDeclaration": 2524,
+                      "referencedDeclaration": 2592,
                       "src": "5731:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
@@ -4148,7 +4148,7 @@
           "solidity",
           "^",
           "0.5",
-          ".0"
+          ".4"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:2"
@@ -4181,7 +4181,7 @@
         "id": 440,
         "nodeType": "ImportDirective",
         "scope": 731,
-        "sourceUnit": 2156,
+        "sourceUnit": 2213,
         "src": "73:24:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4248,10 +4248,10 @@
               "id": 445,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2155,
+              "referencedDeclaration": 2212,
               "src": "346:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$2155",
+                "typeIdentifier": "t_contract$_SafeMath_$2212",
                 "typeString": "library SafeMath"
               }
             },
@@ -4723,7 +4723,7 @@
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2519,
+                                  "referencedDeclaration": 2587,
                                   "src": "1723:3:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_magic_message",
@@ -4838,10 +4838,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2522,
-                        2523
+                        2590,
+                        2591
                       ],
-                      "referencedDeclaration": 2522,
+                      "referencedDeclaration": 2590,
                       "src": "1704:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -4902,7 +4902,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2519,
+                              "referencedDeclaration": 2587,
                               "src": "1788:3:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -5021,7 +5021,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2519,
+                          "referencedDeclaration": 2587,
                           "src": "1848:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -5778,7 +5778,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2519,
+                        "referencedDeclaration": 2587,
                         "src": "3698:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -5890,7 +5890,7 @@
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2519,
+                                  "referencedDeclaration": 2587,
                                   "src": "3751:3:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_magic_message",
@@ -6026,7 +6026,7 @@
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 2519,
+                                      "referencedDeclaration": 2587,
                                       "src": "3788:3:2",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_magic_message",
@@ -6090,7 +6090,7 @@
                               "lValueRequested": false,
                               "memberName": "sub",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 2130,
+                              "referencedDeclaration": 2187,
                               "src": "3770:38:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -6448,7 +6448,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2519,
+                        "referencedDeclaration": 2587,
                         "src": "4687:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -6566,7 +6566,7 @@
                                         "name": "msg",
                                         "nodeType": "Identifier",
                                         "overloadedDeclarations": [],
-                                        "referencedDeclaration": 2519,
+                                        "referencedDeclaration": 2587,
                                         "src": "4800:3:2",
                                         "typeDescriptions": {
                                           "typeIdentifier": "t_magic_message",
@@ -6756,7 +6756,7 @@
                                             "name": "msg",
                                             "nodeType": "Identifier",
                                             "overloadedDeclarations": [],
-                                            "referencedDeclaration": 2519,
+                                            "referencedDeclaration": 2587,
                                             "src": "4841:3:2",
                                             "typeDescriptions": {
                                               "typeIdentifier": "t_magic_message",
@@ -6847,7 +6847,7 @@
                                     "lValueRequested": false,
                                     "memberName": "sub",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 2130,
+                                    "referencedDeclaration": 2187,
                                     "src": "4823:42:2",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -7572,10 +7572,10 @@
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2524,
-                        2525
+                        2592,
+                        2593
                       ],
-                      "referencedDeclaration": 2524,
+                      "referencedDeclaration": 2592,
                       "src": "5731:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
@@ -7893,11 +7893,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+    "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-12T07:23:22.696Z",
+  "updatedAt": "2019-03-12T18:35:14.601Z",
   "devdoc": {
     "methods": {
       "allowance(address,address,uint256)": {

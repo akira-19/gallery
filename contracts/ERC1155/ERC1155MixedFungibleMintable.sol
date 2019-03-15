@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.4;
 
 import "./ERC1155MixedFungible.sol";
 
@@ -11,6 +11,7 @@ contract ERC1155MixedFungibleMintable is ERC1155MixedFungible {
     uint256 nonce;
     mapping (uint256 => address) public creators;
     mapping (uint256 => uint256) public maxIndex;
+
 
     modifier creatorOnly(uint256 _id) {
         require(creators[_id] == msg.sender);
@@ -85,9 +86,9 @@ contract ERC1155MixedFungibleMintable is ERC1155MixedFungible {
             // It will also provide the circulating supply info.
             emit TransferSingle(msg.sender, address(0x0), to, _id, quantity);
 
-            if (to.isContract()) {
+            /* if (to.isContract()) {
                 require(IERC1155TokenReceiver(to).onERC1155Received(msg.sender, msg.sender, _id, quantity, '') == ERC1155_RECEIVED);
-            }
+            } */
         }
     }
 }

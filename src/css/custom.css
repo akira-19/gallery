@@ -1,0 +1,177 @@
+/* general */
+.row{
+  margin: 20px auto;
+}
+
+
+/* header navigation style */
+
+/* navbar background color */
+.navbar {
+  background-color: rgb(40, 40, 40);
+  border-color: rgb(40, 40, 40);
+}
+/* navbar text color */
+.navbar-nav > li > a {
+  color: #ffffff!important;
+}
+
+.navbar-nav > li > a :visited{
+  color: #ffffff;
+}
+/* navbar text color when hover,focus */
+.navbar-nav > li > a:hover {
+  color: rgb(140, 140, 140)!important;
+  background-color: transparent;
+}
+
+/* navbar brand name */
+.navbar-brand a{
+  color: #ffffff !important;
+}
+
+/* navbar brand name when hover */
+.navbar-brand a:hover{
+  color: rgb(140, 140, 140) !important;
+}
+
+
+
+/* top page */
+.container-fluid{
+  margin: 0px;
+  padding: 0px;
+}
+
+#top-page{
+    margin: 0px;
+    padding: 0px;
+    height: 800px;
+    width: 100%;
+    background: black url("../images/background.jpg") no-repeat fixed center;
+}
+.title-text{
+    width: 400px;
+    margin: auto;
+    text-align: center;
+    padding-top: 300px;
+    color: white;
+}
+.title-text h2{
+    font-size: 4em;
+}
+.title-text p{
+    font-size: 1.5em;
+}
+
+/* playgame */
+#playgame{
+  padding-top: 25px;
+}
+#bet-table{
+  width: 700px;
+  height: 400px;
+  background: rgb(38, 163, 61);
+}
+
+tr td{
+  border: 4px solid white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  color: rgb(217, 231, 117);
+  cursor: pointer;
+}
+.redShape{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: red;
+    margin: auto;
+}
+.blackShape{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: black;
+    margin: auto;
+}
+
+.numRed{
+    background: red;
+    height: 70px;
+    line-height: 70px;
+    margin: auto;
+    border-radius: 50%;
+    width: 40px;
+}
+.numBlack{
+    background: black;
+    height: 70px;
+    line-height: 70px;
+    margin: auto;
+    border-radius: 50%;
+}
+
+/* roulette result */
+#wrapperRouletteResult{
+  width: 170px;
+  margin: auto;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+#rouletteResult{
+  width: 70px;
+  height: 50px;
+  margin: auto;
+  font-size: 30px;
+  line-height: 50px;
+  font-weight: bold;
+  color: blue;
+  border: 1px solid black;
+}
+
+
+/* bet infomation */
+#wrapperChoice{
+    width: 170px;
+    margin: auto;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+#choice{
+    width: 130px;
+    height: 50px;
+    margin: auto;
+    font-size: 28px;
+    line-height: 50px;
+    font-weight: bold;
+    color: blue;
+    border: 1px solid black;
+}
+#wrapperBetAmount{
+    font-size: 20px;
+    font-weight: bold;
+}
+#betAmount input{
+    width: 100px;
+}
+
+#startButton{
+    margin-top: 20px;
+}
+
+/* usage */
+#usage{
+    width: 100%;
+    background: rgb(220, 220, 220);
+    margin-top: 35px;
+}
+.usageList{
+    width: 700px;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 25px;
+}

@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Pete's Pet Shop</title>
+    <title>Gallery</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,42 +19,65 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-push-2">
-          <h1 class="text-center">Pete's Pet Shop</h1>
-          <hr/>
-          <br/>
-        </div>
-      </div>
 
-      <div id="petsRow" class="row">
-        <!-- PETS LOAD HERE -->
+
+    <nav class="navbar navbar-expand navbar-dark">
+          <a class="navbar-brand" href="#">10 weeks project</a>
+
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#usage">How to play</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#playgame">Play game</a>
+              </li>
+            </ul>
+          </div>
+    </nav>
+
+
+  <div class="container-fluid">
+    <div id="top-page">
+      <div class="title-text">
+          <h2>Gallery</h2>
+          <p>Buy and Sell your art</p>
       </div>
     </div>
 
-    <div id="petTemplate" style="display: none;">
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="panel panel-default panel-pet">
-          <div class="panel-heading">
-            <h3 class="panel-title">Scrappy</h3>
-          </div>
-          <div class="panel-body">
-            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
-            <br/><br/>
-            <strong>Breed</strong>: <span class="pet-breed">Golden Retriever</span><br/>
-            <strong>Age</strong>: <span class="pet-age">3</span><br/>
-            <strong>Location</strong>: <span class="pet-location">Warren, MI</span><br/><br/>
-            <button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button>
-          </div>
-        </div>
-      </div>
+    <div id="playgame">
+         <button type="button" class="btn btn-primary" name="button" id="startButton">button</button>
+         <button type="button" class="btn btn-primary" name="button" id="getArt" onclick="App.getArt();">get art</button>
+         <button type="button" class="btn btn-primary" name="button" id="registerPic" onclick="App.registerPic();">get picture</button>
+         <!-- <button type="button" class="btn btn-primary" name="button" id="registerPic1" onclick="App.registerPic1();">get picture1</button>
+         <button type="button" class="btn btn-primary" name="button" id="registerPic2" onclick="App.registerPic2();">get picture2</button>
+         <button type="button" class="btn btn-primary" name="button" id="registerPic3" onclick="App.registerPic3();">get picture3</button> -->
+         <div id="ownedArt">
+
+         </div>
     </div>
+
+    <div id="usage">
+        <div class="usageList">
+            <h3>1. Select bet</h3>
+            <p>Click the place where you want to bet on the table. You can choose only one place.</p>
+            <h3>2. Bet ether</h3>
+            <p>You can bet from 0.01 ehter to 0.03 ether.</p>
+            <h3>3. Start the roulette</h3>
+            <p>Now you can press the start button. When the transaction is confirmed, the roulette will run.</p>
+            <p><strong>* Use Ropsten account for this dapp.</strong></p>
+        </div>
+    </div>
+
+
+
+
+  </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>

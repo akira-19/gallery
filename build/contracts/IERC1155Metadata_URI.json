@@ -25,7 +25,7 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.0;\n\ninterface IERC1155Metadata_URI {\n    /**\n        @notice A distinct Uniform Resource Identifier (URI) for a given token\n        @dev URIs are defined in RFC 3986\n        @return  URI string\n    */\n    function uri(uint256 _id) external view returns (string memory);\n}\n\ninterface IERC1155Metadata_Name {\n    /**\n        @notice A distinct Uniform Resource Identifier (URI) for a given token\n        @dev URIs are defined in RFC 3986\n        @return  URI string\n    */\n    function name(uint256 _id) external view returns (string memory);\n}\n",
+  "source": "pragma solidity ^0.5.4;\n\ninterface IERC1155Metadata_URI {\n    /**\n        @notice A distinct Uniform Resource Identifier (URI) for a given token\n        @dev URIs are defined in RFC 3986\n        @return  URI string\n    */\n    function uri(uint256 _id) external view returns (string memory);\n}\n\ninterface IERC1155Metadata_Name {\n    /**\n        @notice A distinct Uniform Resource Identifier (URI) for a given token\n        @dev URIs are defined in RFC 3986\n        @return  URI string\n    */\n    function name(uint256 _id) external view returns (string memory);\n}\n",
   "sourcePath": "/Users/akira/ethereum/dapps/gallery/contracts/ERC1155/IERC1155Metadata.sol",
   "ast": {
     "absolutePath": "/Users/akira/ethereum/dapps/gallery/contracts/ERC1155/IERC1155Metadata.sol",
@@ -46,7 +46,7 @@
           "solidity",
           "^",
           "0.5",
-          ".0"
+          ".4"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:9"
@@ -269,7 +269,7 @@
           "solidity",
           "^",
           "0.5",
-          ".0"
+          ".4"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:9"
@@ -475,11 +475,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+    "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-12T07:23:22.707Z",
+  "updatedAt": "2019-03-12T18:35:14.461Z",
   "devdoc": {
     "methods": {
       "uri(uint256)": {
