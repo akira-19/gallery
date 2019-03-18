@@ -27,10 +27,10 @@
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#usage">How to play</a>
+                <a class="nav-link" href="#usage">How to use</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#playgame">Play game</a>
+                <a class="nav-link" href="#transactions">Use the DApp</a>
               </li>
             </ul>
           </div>
@@ -45,27 +45,66 @@
       </div>
     </div>
 
-    <div id="playgame">
-         <button type="button" class="btn btn-primary" name="button" id="startButton">button</button>
-         <button type="button" class="btn btn-primary" name="button" id="getArt" onclick="App.getArt();">get art</button>
-         <button type="button" class="btn btn-primary" name="button" id="registerPic" onclick="App.registerPic();">get picture</button>
-         <!-- <button type="button" class="btn btn-primary" name="button" id="registerPic1" onclick="App.registerPic1();">get picture1</button>
-         <button type="button" class="btn btn-primary" name="button" id="registerPic2" onclick="App.registerPic2();">get picture2</button>
-         <button type="button" class="btn btn-primary" name="button" id="registerPic3" onclick="App.registerPic3();">get picture3</button> -->
-         <div id="ownedArt">
+    <div id="transactions">
+        <div id="trWrapper">
+            <h2>Notification</h2>
+            <div id="ownedArt">
 
-         </div>
+            </div>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>From</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <div id="allGallery" class="border-bottom">
+        <h2>Gallery</h2>
+         <div class="row">
+             <div class="col-md-4 picture" id="img-1">
+                 <br>
+                <button class="btn btn-primary buyBtn" type="button" name="button" onclick="App.buyImage();">Buy</button><br>
+             </div>
+             <div class="col-md-4 picture" id="img-2">
+                 <br>
+                <button class="btn btn-primary buyBtn" type="button" name="button" onclick="App.buyImage();">Buy</button><br>
+             </div>
+             <div class="col-md-4 picture" id="img-3">
+                 <br>
+                <button class="btn btn-primary buyBtn" type="button" name="button" onclick="App.buyImage();">Buy</button><br>
+             </div>
+         </div>
+
+
+    </div>
+
+    <div id="yourGallery">
+        <h2>Your pictures</h2>
+            <div class="pictures" id="myImg-1">
+
+            </div>
+            <div class="pictures" id="myImg-2">
+
+            </div>
+            <div class="pictures" id="myImg-3">
+
+            </div>
+    </div>
+
 
     <div id="usage">
         <div class="usageList">
-            <h3>1. Select bet</h3>
-            <p>Click the place where you want to bet on the table. You can choose only one place.</p>
-            <h3>2. Bet ether</h3>
-            <p>You can bet from 0.01 ehter to 0.03 ether.</p>
-            <h3>3. Start the roulette</h3>
-            <p>Now you can press the start button. When the transaction is confirmed, the roulette will run.</p>
-            <p><strong>* Use Ropsten account for this dapp.</strong></p>
+            <h3>1. Get art</h3>
+            <p>Get "art" that is a currency we use in this DApp. You can get 10 art only once.</p>
+            <h3>2. Buy Picture</h3>
+            <p>Click the "Buy" button where you want to buy.</p>
+            <h3>3. Sell your picture</h3>
+            <p>When someone click "Buy" button, you will get notification. If you want to sell it, click the "Sell" button</p>
         </div>
     </div>
 

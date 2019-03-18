@@ -1,0 +1,147 @@
+/* general */
+.row{
+  margin: 20px auto;
+}
+
+
+/* header navigation style */
+
+/* navbar background color */
+.navbar {
+  background-color: rgb(40, 40, 40);
+  border-color: rgb(40, 40, 40);
+}
+/* navbar text color */
+.navbar-nav > li > a {
+  color: #ffffff!important;
+}
+
+.navbar-nav > li > a :visited{
+  color: #ffffff;
+}
+/* navbar text color when hover,focus */
+.navbar-nav > li > a:hover {
+  color: rgb(140, 140, 140)!important;
+  background-color: transparent;
+}
+
+/* navbar brand name */
+.navbar-brand a{
+  color: #ffffff !important;
+}
+
+/* navbar brand name when hover */
+.navbar-brand a:hover{
+  color: rgb(140, 140, 140) !important;
+}
+
+
+
+/* top page */
+.container-fluid{
+  margin: 0px;
+  padding: 0px;
+}
+
+#top-page{
+    margin: 0px;
+    padding: 0px;
+    height: 800px;
+    width: 100%;
+    background: black url("../images/background.jpg") no-repeat fixed center;
+}
+.title-text{
+    width: 400px;
+    margin: auto;
+    text-align: center;
+    padding-top: 300px;
+    color: white;
+}
+.title-text h2{
+    font-size: 4em;
+}
+.title-text p{
+    font-size: 1.5em;
+}
+
+/* transactions */
+#trWrapper{
+    width: 600px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    margin: 25px auto;
+    padding: 7px;
+    position: relative;
+}
+#ownedArt{
+    position: absolute;
+    top:10px;
+    right: 10px;
+}
+
+#ownedArt{
+    font-weight: bold;
+}
+
+#trWrapper table tr td:nth-child(1){
+    width: 100px;
+}
+#trWrapper table tr td:nth-child(2){
+    width: 385px;
+}
+
+/* all pictures */
+#allGallery{
+    margin-top: 20px;
+    font-size: 20px;
+}
+#allGallery h2{
+    font-weight: bold;
+}
+.picture img{
+    width: 300px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+.picture{
+    text-align: center;
+}
+
+#allGallery button{
+    width: 150px;
+}
+
+/* my pictures */
+#yourGallery{
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+#yourGallery h2{
+    font-weight: bold;
+}
+.pictures img{
+    width: 600px;
+    height: 400px;
+    margin: 15px auto;
+}
+.pictures{
+    text-align: center;
+}
+
+
+
+
+
+/* usage */
+#usage{
+    width: 100%;
+    background: rgb(220, 220, 220);
+    margin-top: 35px;
+}
+.usageList{
+    width: 700px;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 25px;
+}

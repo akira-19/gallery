@@ -24,7 +24,7 @@ App = {
   }
   // If no injected web3 instance is detected, fall back to Ganache
   else {
-    App.web3Provider = new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/69c812a113224017b9f3d3357c7aa8c4');
+    App.web3Provider = new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/a0e6bae2d4be4f749b0525b8f300a214');
     // App.web3Provider = new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/69c812a113224017b9f3d3357c7aa8c4');
   }
 
@@ -43,6 +43,8 @@ App = {
 
     // Use our contract to retrieve and mark the adopted pets
     App.showNFTokens();
+    App.showOwnedNFTokens();
+    App.showOnlyOwner();
     return App.showOwnedTokenAmount();
   });
     return App.createAndMint();
@@ -82,73 +84,54 @@ App = {
      });
  },
 
+ showOnlyOwner: function(){
+     web3.eth.getAccounts((error, accounts) => {
+        account = accounts[0]
+        App.contracts.Gallery.deployed().then(instance => {
+            return instance.owner();
+        }).then(owner => {
+            if (owner == account){
+                $("#trWrapper").append("<button  class='btn btn-primary'  id='startButton'>initiate</button><button  class='btn btn-primary'  id='registerPic' onclick='App.registerPic();'>get picture</button>");
+            }
+        })
+    });
+
+ },
+
  registerPic: function(){
      $(document).off('click');
      $(document).on('click','#registerPic', function(event){
          event.preventDefault();
          let galleryInstance;
+         App.contracts.Gallery.deployed().then(instance => {
+             galleryInstance = instance;
+             instance.initiatePictures();
+         }).catch(function(err) {
+             console.log(err.message);
+         });
 
+
+    })
+},
+
+ buyImage: function(){
+     $(document).off('click');
+     $(document).on('click','.buyBtn', function(event){
+         event.preventDefault();
+         let galleryInstance;
+         let thisPicId = $(this).val();
           App.contracts.Gallery.deployed().then(instance => {
-              instance.initiatePictures();
+              thisPicId = parseInt(thisPicId);
+              galleryInstance = instance;
+              galleryInstance.notify(thisPicId);
+          }).catch(function(err) {
+              console.log(err.message);
           });
 
 
      });
  },
- // registerPic: function(){
- //     $(document).off('click');
- //     $(document).on('click','#registerPic', function(event){
- //         event.preventDefault();
- //         let galleryInstance;
- //         let accout;
- //
- //         web3.eth.getAccounts((error, accounts) => {
- //             account = accounts[0]
- //             App.contracts.Gallery.deployed().then(instance => {
- //                 galleryInstance = instance;
- //                 let uri = '{"title": "token1", "image": "../images/1.jpg"}';
- //                 return galleryInstance.create(uri, true);
- //             }).then(tokenType => {
- //                 galleryInstance.mintNonFungible(tokenType, account);
- //             }).then(result => {
- //                 let uri = '{"title": "token2", "image": "../images/2.jpg"}';
- //                 return galleryInstance.create(uri, true);
- //             }).then(tokenType => {
- //                 galleryInstance.mintNonFungible(tokenType, account);
- //             }).then(result => {
- //                 let uri = '{"title": "token3", "image": "../images/3.jpg"}';
- //                 return galleryInstance.create(uri, true);
- //             }).then(tokenType => {
- //                 galleryInstance.mintNonFungible(tokenType, account);
- //             }).catch(function(err) {
- //                 console.log(err.message)
- //             });
- //         });
- //
- //     });
- // },
- // registerPic1: function(){
- //     $(document).off('click');
- //     $(document).on('click','#registerPic1', function(event){
- //         event.preventDefault();
- //         let galleryInstance;
- //         let accout;
- //
- //         web3.eth.getAccounts((error, accounts) => {
- //             account = accounts[0]
- //             App.contracts.Gallery.deployed().then(instance => {
- //                 galleryInstance = instance;
- //                 let uri = '{"title": "token1", "image": "../images/1.jpg"}';
- //                 return galleryInstance.create(uri, true);
- //             }).then(tokenType => {
- //                 galleryInstance.mintNonFungible(tokenType, account);
- //             }).catch(function(err) {
- //                 console.log(err.message)
- //             });
- //         });
- //
- //     });
- // },
+
 
  showOwnedTokenAmount: function(){
      let galleryInstance;
@@ -156,7 +139,12 @@ App = {
          galleryInstance = instance;
          return galleryInstance.returnBalance();
      }).then(result => {
-         $("#ownedArt").text(result);
+         if (result == 0){
+             $("#ownedArt").html("<button  class='btn btn-info'  id='getArt' onclick='App.getArt();'>Get art</button>");
+         }else{
+             $("#ownedArt").text("Owned art: "+result+" art");
+         }
+
      }).catch(function(err) {
              console.log(err.message);
      });
@@ -168,19 +156,156 @@ App = {
          galleryInstance = instance;
          return galleryInstance.getPictures();
      }).then(pictures => {
-         console.log(pictures);
-
-         for (var i=0; i<pictures.length; i++){
+         var getImage = (i) => {
              var uriEvent = galleryInstance.URI({_id: pictures[i]}, {fromBlock:1, toBlock:"latest"});
              uriEvent.watch((error, result) => {
-                 let obj = $.parseJSON(result.args._value);
-                 $("#ownedArt").html("<img src='" + obj.image + "'>");
-                 console.log(result.args._value);
+                 let objImage = $.parseJSON(result.args._value).image;
+                 let objTitle = $.parseJSON(result.args._value).title;
+                 let objValue = $.parseJSON(result.args._value).value;
+                 let objId = result.args._id;
+                 $("#img-"+(i+1)).prepend("<img src='" + objImage + "'>");
+                 $("#img-"+(i+1)).append("Title: " + objTitle + "<br>");
+                 $("#img-"+(i+1)).append("Price: " + objValue + "art");
+                 $("#img-"+(i+1)+" button").val(i+2);
+
              });
-         }
-     })
- }
-};
+         };
+        for (var i=0; i<pictures.length; i++){
+                 getImage(i);
+        }
+     }).catch(function(err) {
+         console.log(err.message);
+     });
+ },
+
+ showOwnedNFTokens: function(){
+     let galleryInstance;
+     let allPictures;
+     web3.eth.getAccounts((error, accounts) => {
+        account = accounts[0]
+        App.contracts.Gallery.deployed().then(instance => {
+            galleryInstance = instance;
+            return galleryInstance.getPictures();
+        }).then(pictures => {
+            allPictures = pictures;
+
+
+            pictures.forEach(id => {
+                galleryInstance.getBlockNum(account, id).then(blockNum => {
+                    let picUri;
+                    getURI(id, blockNum).then(result => {
+                        picUri = result;
+                        return getReq(id, blockNum);
+                    }).then(result => {
+                        return sucReq(result);
+                    }).then(arr => {
+                        let tableArr = [];
+                        arr.forEach(elm=>{
+                            let title = elm[0];
+                            let fromAd = elm[1];
+                            let tokenId = picUri[0].args._id;
+                            let tokenIdString = tokenId.toString();
+                            if (tableArr.indexOf(fromAd) == (-1)){
+                                $("#trWrapper tbody").append("<tr><td>" + title + "</td><td>" + fromAd
+                                + "</td><td><button class='btn btn-danger sellBtn' name='" + tokenIdString + "' value='" + fromAd + "' onclick='App.sellPicture()'>Sell</button></td></tr>");
+                                tableArr.push(fromAd);
+                            }
+
+                        });
+
+
+                    })
+
+
+
+                    function getURI(id, blockNum) {
+                        return new Promise((resolve, reject) => {
+                            let uriEvent = galleryInstance.URI({_id: id}, {fromBlock:blockNum, toBlock:"latest"});
+                            uriEvent.get((error, result) => {
+                                resolve(result);
+                            })
+                        });
+                    }
+
+                    function getReq(id, blockNum){
+                        return new Promise((resolve, reject) => {
+                            let saleRequestEvent = galleryInstance.SaleRequest({_owner: account, _id: id}, {fromBlock: (parseInt(blockNum.toString())+1), toBlock: "latest"});
+                                saleRequestEvent.get((error, result) => {
+                                    resolve(result);
+                                });
+                        });
+                    }
+
+                    function sucReq(reqs) {
+                        return new Promise( (resolve, reject) => {
+                            let tableArr = [];
+                            for (var i = 0; i < reqs.length; i++) {
+                                let title = $.parseJSON(picUri[0].args._value).title;
+                                let fromAd = reqs[i].args._from;
+                                if (tableArr.indexOf([title, fromAd]) == -1){
+                                    tableArr.push([title, fromAd]);
+                                }
+                            }
+                            resolve(tableArr);
+                        });
+                    }
+
+
+
+
+
+                })
+            });
+
+            return galleryInstance.getOwnedPictures(pictures);
+        }).then(owner=>{
+            let getImage = (i) => {
+                if (owner[i] == account){
+                    let uriEvent = galleryInstance.URI({_id: allPictures[i]}, {fromBlock:1, toBlock:"latest"});
+                    uriEvent.watch((error, result) => {
+                        let objImage = $.parseJSON(result.args._value).image;
+                        let objTitle = $.parseJSON(result.args._value).title;
+                        let objId = result.args._id;
+                        $("#myImg-"+(i+1)).prepend("<img src='" + objImage + "'>");
+                        $("#myImg-"+(i+1)).append("Title: " + objTitle + "<br>");
+                    });
+
+                }
+
+
+            };
+           for (var i=0; i<owner.length; i++){
+                    getImage(i);
+           }
+
+        }).catch(function(err) {
+            console.log(err.message);
+        });
+    });
+
+},
+
+sellPicture: function(){
+    const BigNumber = require('bignumber.js');
+    $(document).off('click');
+    $(document).on('click','.sellBtn', function(event){
+        let val = $(this).val();
+        let name = $(this).attr('name');
+        event.preventDefault();
+        web3.eth.getAccounts((error, accounts) => {
+            account = accounts[0]
+            App.contracts.Gallery.deployed().then(instance => {
+                let tokenId = web3.toBigNumber(name);
+                instance.safeTransferFrom(account, val, tokenId, 1, 0, {gas:1000000});
+            })
+        });
+    });
+
+}
+
+
+
+}
 
 $(function() {
   $(window).load(function() {

@@ -82,7 +82,7 @@
         },
         {
           "indexed": true,
-          "name": "_to",
+          "name": "",
           "type": "address"
         },
         {
@@ -400,7 +400,7 @@
         "id": 438,
         "nodeType": "ImportDirective",
         "scope": 731,
-        "sourceUnit": 2009,
+        "sourceUnit": 2002,
         "src": "25:24:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -411,7 +411,7 @@
         "id": 439,
         "nodeType": "ImportDirective",
         "scope": 731,
-        "sourceUnit": 1900,
+        "sourceUnit": 1893,
         "src": "50:22:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -422,7 +422,7 @@
         "id": 440,
         "nodeType": "ImportDirective",
         "scope": 731,
-        "sourceUnit": 2213,
+        "sourceUnit": 2206,
         "src": "73:24:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -436,10 +436,10 @@
               "id": 441,
               "name": "IERC1155",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2008,
+              "referencedDeclaration": 2001,
               "src": "317:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC1155_$2008",
+                "typeIdentifier": "t_contract$_IERC1155_$2001",
                 "typeString": "contract IERC1155"
               }
             },
@@ -454,10 +454,10 @@
               "id": 443,
               "name": "ERC165",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1899,
+              "referencedDeclaration": 1892,
               "src": "327:6:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC165_$1899",
+                "typeIdentifier": "t_contract$_ERC165_$1892",
                 "typeString": "contract ERC165"
               }
             },
@@ -467,8 +467,8 @@
           }
         ],
         "contractDependencies": [
-          1899,
-          2008
+          1892,
+          2001
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -476,8 +476,8 @@
         "id": 730,
         "linearizedBaseContracts": [
           730,
-          1899,
-          2008
+          1892,
+          2001
         ],
         "name": "AllowanceWrapper",
         "nodeType": "ContractDefinition",
@@ -489,10 +489,10 @@
               "id": 445,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2212,
+              "referencedDeclaration": 2205,
               "src": "346:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$2212",
+                "typeIdentifier": "t_contract$_SafeMath_$2205",
                 "typeString": "library SafeMath"
               }
             },
@@ -519,7 +519,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IERC1155_$2008",
+              "typeIdentifier": "t_contract$_IERC1155_$2001",
               "typeString": "contract IERC1155"
             },
             "typeName": {
@@ -527,10 +527,10 @@
               "id": 448,
               "name": "IERC1155",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2008,
+              "referencedDeclaration": 2001,
               "src": "373:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC1155_$2008",
+                "typeIdentifier": "t_contract$_IERC1155_$2001",
                 "typeString": "contract IERC1155"
               }
             },
@@ -643,7 +643,7 @@
                       "referencedDeclaration": 449,
                       "src": "634:14:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$2008",
+                        "typeIdentifier": "t_contract$_IERC1155_$2001",
                         "typeString": "contract IERC1155"
                       }
                     },
@@ -677,10 +677,10 @@
                         "name": "IERC1155",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2008,
+                        "referencedDeclaration": 2001,
                         "src": "651:8:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$2008_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$2001_$",
                           "typeString": "type(contract IERC1155)"
                         }
                       },
@@ -694,13 +694,13 @@
                       "nodeType": "FunctionCall",
                       "src": "651:17:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$2008",
+                        "typeIdentifier": "t_contract$_IERC1155_$2001",
                         "typeString": "contract IERC1155"
                       }
                     },
                     "src": "634:34:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC1155_$2008",
+                      "typeIdentifier": "t_contract$_IERC1155_$2001",
                       "typeString": "contract IERC1155"
                     }
                   },
@@ -964,7 +964,7 @@
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2587,
+                                  "referencedDeclaration": 2870,
                                   "src": "1723:3:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_magic_message",
@@ -1079,10 +1079,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2590,
-                        2591
+                        2873,
+                        2874
                       ],
-                      "referencedDeclaration": 2590,
+                      "referencedDeclaration": 2873,
                       "src": "1704:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1143,7 +1143,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2587,
+                              "referencedDeclaration": 2870,
                               "src": "1788:3:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -1262,7 +1262,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2587,
+                          "referencedDeclaration": 2870,
                           "src": "1848:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1808,7 +1808,7 @@
                                 "referencedDeclaration": 449,
                                 "src": "2525:14:2",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_IERC1155_$2008",
+                                  "typeIdentifier": "t_contract$_IERC1155_$2001",
                                   "typeString": "contract IERC1155"
                                 }
                               }
@@ -1816,7 +1816,7 @@
                             "expression": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_IERC1155_$2008",
+                                  "typeIdentifier": "t_contract$_IERC1155_$2001",
                                   "typeString": "contract IERC1155"
                                 }
                               ],
@@ -1859,10 +1859,10 @@
                           "name": "ERC165",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1899,
+                          "referencedDeclaration": 1892,
                           "src": "2510:6:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_ERC165_$1899_$",
+                            "typeIdentifier": "t_type$_t_contract$_ERC165_$1892_$",
                             "typeString": "type(contract ERC165)"
                           }
                         },
@@ -1876,7 +1876,7 @@
                         "nodeType": "FunctionCall",
                         "src": "2510:31:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ERC165_$1899",
+                          "typeIdentifier": "t_contract$_ERC165_$1892",
                           "typeString": "contract ERC165"
                         }
                       },
@@ -1887,7 +1887,7 @@
                       "lValueRequested": false,
                       "memberName": "supportsInterface",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1898,
+                      "referencedDeclaration": 1891,
                       "src": "2510:49:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_bytes4_$returns$_t_bool_$",
@@ -1990,7 +1990,7 @@
             "scope": 730,
             "src": "2410:170:2",
             "stateMutability": "view",
-            "superFunction": 1898,
+            "superFunction": 1891,
             "visibility": "external"
           },
           {
@@ -2019,7 +2019,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2587,
+                        "referencedDeclaration": 2870,
                         "src": "3698:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2131,7 +2131,7 @@
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2587,
+                                  "referencedDeclaration": 2870,
                                   "src": "3751:3:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_magic_message",
@@ -2267,7 +2267,7 @@
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 2587,
+                                      "referencedDeclaration": 2870,
                                       "src": "3788:3:2",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_magic_message",
@@ -2331,7 +2331,7 @@
                               "lValueRequested": false,
                               "memberName": "sub",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 2187,
+                              "referencedDeclaration": 2180,
                               "src": "3770:38:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -2467,7 +2467,7 @@
                         "referencedDeclaration": 449,
                         "src": "3836:14:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$2008",
+                          "typeIdentifier": "t_contract$_IERC1155_$2001",
                           "typeString": "contract IERC1155"
                         }
                       },
@@ -2478,7 +2478,7 @@
                       "lValueRequested": false,
                       "memberName": "safeTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1955,
+                      "referencedDeclaration": 1948,
                       "src": "3836:31:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -2660,7 +2660,7 @@
             "scope": 730,
             "src": "3557:349:2",
             "stateMutability": "nonpayable",
-            "superFunction": 1955,
+            "superFunction": 1948,
             "visibility": "external"
           },
           {
@@ -2689,7 +2689,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2587,
+                        "referencedDeclaration": 2870,
                         "src": "4687:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2807,7 +2807,7 @@
                                         "name": "msg",
                                         "nodeType": "Identifier",
                                         "overloadedDeclarations": [],
-                                        "referencedDeclaration": 2587,
+                                        "referencedDeclaration": 2870,
                                         "src": "4800:3:2",
                                         "typeDescriptions": {
                                           "typeIdentifier": "t_magic_message",
@@ -2997,7 +2997,7 @@
                                             "name": "msg",
                                             "nodeType": "Identifier",
                                             "overloadedDeclarations": [],
-                                            "referencedDeclaration": 2587,
+                                            "referencedDeclaration": 2870,
                                             "src": "4841:3:2",
                                             "typeDescriptions": {
                                               "typeIdentifier": "t_magic_message",
@@ -3088,7 +3088,7 @@
                                     "lValueRequested": false,
                                     "memberName": "sub",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 2187,
+                                    "referencedDeclaration": 2180,
                                     "src": "4823:42:2",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -3379,7 +3379,7 @@
                         "referencedDeclaration": 449,
                         "src": "4911:14:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$2008",
+                          "typeIdentifier": "t_contract$_IERC1155_$2001",
                           "typeString": "contract IERC1155"
                         }
                       },
@@ -3390,7 +3390,7 @@
                       "lValueRequested": false,
                       "memberName": "safeBatchTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1970,
+                      "referencedDeclaration": 1963,
                       "src": "4911:36:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_array$_t_uint256_$dyn_memory_ptr_$_t_array$_t_uint256_$dyn_memory_ptr_$_t_bytes_memory_ptr_$returns$__$",
@@ -3592,7 +3592,7 @@
             "scope": 730,
             "src": "4518:470:2",
             "stateMutability": "nonpayable",
-            "superFunction": 1970,
+            "superFunction": 1963,
             "visibility": "external"
           },
           {
@@ -3652,7 +3652,7 @@
                         "referencedDeclaration": 449,
                         "src": "5328:14:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$2008",
+                          "typeIdentifier": "t_contract$_IERC1155_$2001",
                           "typeString": "contract IERC1155"
                         }
                       },
@@ -3663,7 +3663,7 @@
                       "lValueRequested": false,
                       "memberName": "balanceOf",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1979,
+                      "referencedDeclaration": 1972,
                       "src": "5328:24:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_uint256_$returns$_t_uint256_$",
@@ -3794,7 +3794,7 @@
             "scope": 730,
             "src": "5231:141:2",
             "stateMutability": "view",
-            "superFunction": 1979,
+            "superFunction": 1972,
             "visibility": "external"
           },
           {
@@ -3813,10 +3813,10 @@
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2592,
-                        2593
+                        2875,
+                        2876
                       ],
-                      "referencedDeclaration": 2592,
+                      "referencedDeclaration": 2875,
                       "src": "5731:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
@@ -3919,7 +3919,7 @@
             "scope": 730,
             "src": "5567:179:2",
             "stateMutability": "nonpayable",
-            "superFunction": 1998,
+            "superFunction": 1991,
             "visibility": "external"
           },
           {
@@ -3979,7 +3979,7 @@
                         "referencedDeclaration": 449,
                         "src": "6141:14:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$2008",
+                          "typeIdentifier": "t_contract$_IERC1155_$2001",
                           "typeString": "contract IERC1155"
                         }
                       },
@@ -3990,7 +3990,7 @@
                       "lValueRequested": false,
                       "memberName": "isApprovedForAll",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2007,
+                      "referencedDeclaration": 2000,
                       "src": "6141:31:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$returns$_t_bool_$",
@@ -4122,7 +4122,7 @@
             "scope": 730,
             "src": "6034:164:2",
             "stateMutability": "view",
-            "superFunction": 2007,
+            "superFunction": 2000,
             "visibility": "external"
           }
         ],
@@ -4159,7 +4159,7 @@
         "id": 438,
         "nodeType": "ImportDirective",
         "scope": 731,
-        "sourceUnit": 2009,
+        "sourceUnit": 2002,
         "src": "25:24:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4170,7 +4170,7 @@
         "id": 439,
         "nodeType": "ImportDirective",
         "scope": 731,
-        "sourceUnit": 1900,
+        "sourceUnit": 1893,
         "src": "50:22:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4181,7 +4181,7 @@
         "id": 440,
         "nodeType": "ImportDirective",
         "scope": 731,
-        "sourceUnit": 2213,
+        "sourceUnit": 2206,
         "src": "73:24:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4195,10 +4195,10 @@
               "id": 441,
               "name": "IERC1155",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2008,
+              "referencedDeclaration": 2001,
               "src": "317:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC1155_$2008",
+                "typeIdentifier": "t_contract$_IERC1155_$2001",
                 "typeString": "contract IERC1155"
               }
             },
@@ -4213,10 +4213,10 @@
               "id": 443,
               "name": "ERC165",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1899,
+              "referencedDeclaration": 1892,
               "src": "327:6:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC165_$1899",
+                "typeIdentifier": "t_contract$_ERC165_$1892",
                 "typeString": "contract ERC165"
               }
             },
@@ -4226,8 +4226,8 @@
           }
         ],
         "contractDependencies": [
-          1899,
-          2008
+          1892,
+          2001
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -4235,8 +4235,8 @@
         "id": 730,
         "linearizedBaseContracts": [
           730,
-          1899,
-          2008
+          1892,
+          2001
         ],
         "name": "AllowanceWrapper",
         "nodeType": "ContractDefinition",
@@ -4248,10 +4248,10 @@
               "id": 445,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2212,
+              "referencedDeclaration": 2205,
               "src": "346:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$2212",
+                "typeIdentifier": "t_contract$_SafeMath_$2205",
                 "typeString": "library SafeMath"
               }
             },
@@ -4278,7 +4278,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_IERC1155_$2008",
+              "typeIdentifier": "t_contract$_IERC1155_$2001",
               "typeString": "contract IERC1155"
             },
             "typeName": {
@@ -4286,10 +4286,10 @@
               "id": 448,
               "name": "IERC1155",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2008,
+              "referencedDeclaration": 2001,
               "src": "373:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC1155_$2008",
+                "typeIdentifier": "t_contract$_IERC1155_$2001",
                 "typeString": "contract IERC1155"
               }
             },
@@ -4402,7 +4402,7 @@
                       "referencedDeclaration": 449,
                       "src": "634:14:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$2008",
+                        "typeIdentifier": "t_contract$_IERC1155_$2001",
                         "typeString": "contract IERC1155"
                       }
                     },
@@ -4436,10 +4436,10 @@
                         "name": "IERC1155",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2008,
+                        "referencedDeclaration": 2001,
                         "src": "651:8:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$2008_$",
+                          "typeIdentifier": "t_type$_t_contract$_IERC1155_$2001_$",
                           "typeString": "type(contract IERC1155)"
                         }
                       },
@@ -4453,13 +4453,13 @@
                       "nodeType": "FunctionCall",
                       "src": "651:17:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IERC1155_$2008",
+                        "typeIdentifier": "t_contract$_IERC1155_$2001",
                         "typeString": "contract IERC1155"
                       }
                     },
                     "src": "634:34:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC1155_$2008",
+                      "typeIdentifier": "t_contract$_IERC1155_$2001",
                       "typeString": "contract IERC1155"
                     }
                   },
@@ -4723,7 +4723,7 @@
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2587,
+                                  "referencedDeclaration": 2870,
                                   "src": "1723:3:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_magic_message",
@@ -4838,10 +4838,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2590,
-                        2591
+                        2873,
+                        2874
                       ],
-                      "referencedDeclaration": 2590,
+                      "referencedDeclaration": 2873,
                       "src": "1704:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -4902,7 +4902,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2587,
+                              "referencedDeclaration": 2870,
                               "src": "1788:3:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -5021,7 +5021,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2587,
+                          "referencedDeclaration": 2870,
                           "src": "1848:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -5567,7 +5567,7 @@
                                 "referencedDeclaration": 449,
                                 "src": "2525:14:2",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_IERC1155_$2008",
+                                  "typeIdentifier": "t_contract$_IERC1155_$2001",
                                   "typeString": "contract IERC1155"
                                 }
                               }
@@ -5575,7 +5575,7 @@
                             "expression": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_IERC1155_$2008",
+                                  "typeIdentifier": "t_contract$_IERC1155_$2001",
                                   "typeString": "contract IERC1155"
                                 }
                               ],
@@ -5618,10 +5618,10 @@
                           "name": "ERC165",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1899,
+                          "referencedDeclaration": 1892,
                           "src": "2510:6:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_ERC165_$1899_$",
+                            "typeIdentifier": "t_type$_t_contract$_ERC165_$1892_$",
                             "typeString": "type(contract ERC165)"
                           }
                         },
@@ -5635,7 +5635,7 @@
                         "nodeType": "FunctionCall",
                         "src": "2510:31:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ERC165_$1899",
+                          "typeIdentifier": "t_contract$_ERC165_$1892",
                           "typeString": "contract ERC165"
                         }
                       },
@@ -5646,7 +5646,7 @@
                       "lValueRequested": false,
                       "memberName": "supportsInterface",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1898,
+                      "referencedDeclaration": 1891,
                       "src": "2510:49:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_bytes4_$returns$_t_bool_$",
@@ -5749,7 +5749,7 @@
             "scope": 730,
             "src": "2410:170:2",
             "stateMutability": "view",
-            "superFunction": 1898,
+            "superFunction": 1891,
             "visibility": "external"
           },
           {
@@ -5778,7 +5778,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2587,
+                        "referencedDeclaration": 2870,
                         "src": "3698:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -5890,7 +5890,7 @@
                                   "name": "msg",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2587,
+                                  "referencedDeclaration": 2870,
                                   "src": "3751:3:2",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_magic_message",
@@ -6026,7 +6026,7 @@
                                       "name": "msg",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 2587,
+                                      "referencedDeclaration": 2870,
                                       "src": "3788:3:2",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_magic_message",
@@ -6090,7 +6090,7 @@
                               "lValueRequested": false,
                               "memberName": "sub",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 2187,
+                              "referencedDeclaration": 2180,
                               "src": "3770:38:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -6226,7 +6226,7 @@
                         "referencedDeclaration": 449,
                         "src": "3836:14:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$2008",
+                          "typeIdentifier": "t_contract$_IERC1155_$2001",
                           "typeString": "contract IERC1155"
                         }
                       },
@@ -6237,7 +6237,7 @@
                       "lValueRequested": false,
                       "memberName": "safeTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1955,
+                      "referencedDeclaration": 1948,
                       "src": "3836:31:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
@@ -6419,7 +6419,7 @@
             "scope": 730,
             "src": "3557:349:2",
             "stateMutability": "nonpayable",
-            "superFunction": 1955,
+            "superFunction": 1948,
             "visibility": "external"
           },
           {
@@ -6448,7 +6448,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2587,
+                        "referencedDeclaration": 2870,
                         "src": "4687:3:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -6566,7 +6566,7 @@
                                         "name": "msg",
                                         "nodeType": "Identifier",
                                         "overloadedDeclarations": [],
-                                        "referencedDeclaration": 2587,
+                                        "referencedDeclaration": 2870,
                                         "src": "4800:3:2",
                                         "typeDescriptions": {
                                           "typeIdentifier": "t_magic_message",
@@ -6756,7 +6756,7 @@
                                             "name": "msg",
                                             "nodeType": "Identifier",
                                             "overloadedDeclarations": [],
-                                            "referencedDeclaration": 2587,
+                                            "referencedDeclaration": 2870,
                                             "src": "4841:3:2",
                                             "typeDescriptions": {
                                               "typeIdentifier": "t_magic_message",
@@ -6847,7 +6847,7 @@
                                     "lValueRequested": false,
                                     "memberName": "sub",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 2187,
+                                    "referencedDeclaration": 2180,
                                     "src": "4823:42:2",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -7138,7 +7138,7 @@
                         "referencedDeclaration": 449,
                         "src": "4911:14:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$2008",
+                          "typeIdentifier": "t_contract$_IERC1155_$2001",
                           "typeString": "contract IERC1155"
                         }
                       },
@@ -7149,7 +7149,7 @@
                       "lValueRequested": false,
                       "memberName": "safeBatchTransferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1970,
+                      "referencedDeclaration": 1963,
                       "src": "4911:36:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_array$_t_uint256_$dyn_memory_ptr_$_t_array$_t_uint256_$dyn_memory_ptr_$_t_bytes_memory_ptr_$returns$__$",
@@ -7351,7 +7351,7 @@
             "scope": 730,
             "src": "4518:470:2",
             "stateMutability": "nonpayable",
-            "superFunction": 1970,
+            "superFunction": 1963,
             "visibility": "external"
           },
           {
@@ -7411,7 +7411,7 @@
                         "referencedDeclaration": 449,
                         "src": "5328:14:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$2008",
+                          "typeIdentifier": "t_contract$_IERC1155_$2001",
                           "typeString": "contract IERC1155"
                         }
                       },
@@ -7422,7 +7422,7 @@
                       "lValueRequested": false,
                       "memberName": "balanceOf",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1979,
+                      "referencedDeclaration": 1972,
                       "src": "5328:24:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_uint256_$returns$_t_uint256_$",
@@ -7553,7 +7553,7 @@
             "scope": 730,
             "src": "5231:141:2",
             "stateMutability": "view",
-            "superFunction": 1979,
+            "superFunction": 1972,
             "visibility": "external"
           },
           {
@@ -7572,10 +7572,10 @@
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2592,
-                        2593
+                        2875,
+                        2876
                       ],
-                      "referencedDeclaration": 2592,
+                      "referencedDeclaration": 2875,
                       "src": "5731:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
@@ -7678,7 +7678,7 @@
             "scope": 730,
             "src": "5567:179:2",
             "stateMutability": "nonpayable",
-            "superFunction": 1998,
+            "superFunction": 1991,
             "visibility": "external"
           },
           {
@@ -7738,7 +7738,7 @@
                         "referencedDeclaration": 449,
                         "src": "6141:14:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IERC1155_$2008",
+                          "typeIdentifier": "t_contract$_IERC1155_$2001",
                           "typeString": "contract IERC1155"
                         }
                       },
@@ -7749,7 +7749,7 @@
                       "lValueRequested": false,
                       "memberName": "isApprovedForAll",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2007,
+                      "referencedDeclaration": 2000,
                       "src": "6141:31:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$returns$_t_bool_$",
@@ -7881,7 +7881,7 @@
             "scope": 730,
             "src": "6034:164:2",
             "stateMutability": "view",
-            "superFunction": 2007,
+            "superFunction": 2000,
             "visibility": "external"
           }
         ],
@@ -7897,7 +7897,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-12T18:35:14.601Z",
+  "updatedAt": "2019-03-18T06:23:49.292Z",
   "devdoc": {
     "methods": {
       "allowance(address,address,uint256)": {

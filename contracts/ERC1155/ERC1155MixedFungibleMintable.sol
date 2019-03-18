@@ -13,6 +13,7 @@ contract ERC1155MixedFungibleMintable is ERC1155MixedFungible {
     mapping (uint256 => uint256) public maxIndex;
 
 
+
     modifier creatorOnly(uint256 _id) {
         require(creators[_id] == msg.sender);
         _;
@@ -46,7 +47,6 @@ contract ERC1155MixedFungibleMintable is ERC1155MixedFungible {
         // No need to check this is a nf type rather than an id since
         // creatorOnly() will only let a type pass through.
         require(isNonFungible(_type));
-
         // Index are 1-based.
         uint256 index = maxIndex[_type] + 1;
 
@@ -55,7 +55,7 @@ contract ERC1155MixedFungibleMintable is ERC1155MixedFungible {
             uint256 id  = _type | index + i;
 
             nfOwners[id] = dst;
-
+            blockNum[dst][id] = block.number;
             // You could use base-type id to store NF type balances if you wish.
             // balances[_type][dst] = quantity.add(balances[_type][dst]);
 
@@ -91,4 +91,10 @@ contract ERC1155MixedFungibleMintable is ERC1155MixedFungible {
             } */
         }
     }
+
+
+
+
+
+
 }

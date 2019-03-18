@@ -21,6 +21,9 @@ contract ERC1155MixedFungible is ERC1155 {
 
     mapping (uint256 => address) nfOwners;
 
+    // additional mapping
+    mapping (address => mapping (uint => uint)) internal blockNum;
+
     // Only to make code clearer. Should not be functions
     function isNonFungible(uint256 _id) public pure returns(bool) {
         return _id & TYPE_NF_BIT == TYPE_NF_BIT;
@@ -47,14 +50,23 @@ contract ERC1155MixedFungible is ERC1155 {
     }
 
     // overide
-    function safeTransferFrom(address _from, address _to, uint256 _id, uint256 _value, bytes calldata _data) external {
+    function safeTransferFrom(address _from, address _to, uint256 _id, uint256 _value, bytes calldata _data ) external {
 
         require(_to != address(0x0), "cannot send to zero address");
         require(_from == msg.sender || operatorApproval[_from][msg.sender] == true, "Need operator approval for 3rd party transfers.");
 
         if (isNonFungible(_id)) {
-            require(nfOwners[_id] == _from);
-            nfOwners[_id] = _to;
+            // additional code
+            uint id = _id | uint(1);
+            require(nfOwners[id] == _from);
+            nfOwners[id] = _to;
+            blockNum[_to][id] = block.number;
+
+
+            // original code is below (changed _id to id)
+            //     require(nfOwners[_id] == _from);
+            //    nfOwners[_id] = _to;
+
             // You could keep balance of NF type in base type id like so:
             // uint256 baseType = getNonFungibleBaseType(_id);
             // balances[baseType][_from] = balances[baseType][_from].sub(_value);

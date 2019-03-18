@@ -16,7 +16,7 @@ interface IERC1155 /* is ERC165 */ {
         The total value transferred from address 0x0 minus the total value transferred to 0x0 may be used by clients and exchanges to be added to the "circulating supply" for a given token ID.
         To define a token ID with no initial balance, the contract SHOULD emit the TransferSingle event from `0x0` to `0x0`, with the token creator as `_operator`.
     */
-    event TransferSingle(address indexed _operator, address indexed _from, address indexed _to, uint256 _id, uint256 _value);
+    event TransferSingle(address indexed _operator, address indexed _from, address indexed, uint256 _id, uint256 _value);
 
     /**
         @dev Either TransferSingle or TransferBatch MUST emit when tokens are transferred, including zero value transfers as well as minting or burning.
