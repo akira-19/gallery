@@ -197,7 +197,7 @@ App = {
                         picUri = result;
                         return getReq(id, blockNum);
                     }).then(result => {
-                        return sucReq(result);
+                        return sucReq(result, picUri);
                     }).then(arr => {
                         let tableArr = [];
                         arr.forEach(elm=>{
@@ -220,7 +220,7 @@ App = {
 
                     function getURI(id, blockNum) {
                         return new Promise((resolve, reject) => {
-                            let uriEvent = galleryInstance.URI({_id: id}, {fromBlock:blockNum, toBlock:"latest"});
+                            let uriEvent = galleryInstance.URI({_id: id}, {fromBlock:0, toBlock:"latest"});
                             uriEvent.get((error, result) => {
                                 resolve(result);
                             })
@@ -229,6 +229,7 @@ App = {
 
                     function getReq(id, blockNum){
                         return new Promise((resolve, reject) => {
+
                             let saleRequestEvent = galleryInstance.SaleRequest({_owner: account, _id: id}, {fromBlock: (parseInt(blockNum.toString())+1), toBlock: "latest"});
                                 saleRequestEvent.get((error, result) => {
                                     resolve(result);
@@ -236,15 +237,18 @@ App = {
                         });
                     }
 
-                    function sucReq(reqs) {
+                    function sucReq(reqs, picUri) {
                         return new Promise( (resolve, reject) => {
                             let tableArr = [];
                             for (var i = 0; i < reqs.length; i++) {
-                                let title = $.parseJSON(picUri[0].args._value).title;
-                                let fromAd = reqs[i].args._from;
-                                if (tableArr.indexOf([title, fromAd]) == -1){
-                                    tableArr.push([title, fromAd]);
-                                }
+                                    let fromAd = reqs[i].args._from;
+                                    let title = $.parseJSON(picUri[0].args._value).title;
+                                    if (tableArr.indexOf([title, fromAd]) == -1){
+                                        tableArr.push([title, fromAd]);
+                                    }
+
+
+
                             }
                             resolve(tableArr);
                         });

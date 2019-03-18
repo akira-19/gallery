@@ -104,7 +104,7 @@ contract Gallery is Ownable, ERC1155MixedFungibleMintable{
        tokenId = tokenId | TYPE_NF_BIT;
        uint tokenIdForOwn = tokenId | uint(1);
        require(isNonFungible(tokenId));
-       require(ownerOf(tokenId) != msg.sender);
+       require(ownerOf(tokenIdForOwn) != msg.sender);
        emit SaleRequest(msg.sender, ownerOf(tokenIdForOwn), tokenId);
    }
 
