@@ -159,7 +159,8 @@ App = {
          var getImage = (i) => {
              var uriEvent = galleryInstance.URI({_id: pictures[i]}, {fromBlock:1, toBlock:"latest"});
              uriEvent.watch((error, result) => {
-                 let objImage = $.parseJSON(result.args._value).image.slice(3);
+                 let objImage = $.parseJSON(result.args._value).image;
+                 objImage.slice(3);
                  let objTitle = $.parseJSON(result.args._value).title;
                  let objValue = $.parseJSON(result.args._value).value;
                  let objId = result.args._id;
@@ -267,7 +268,8 @@ App = {
                 if (owner[i] == account){
                     let uriEvent = galleryInstance.URI({_id: allPictures[i]}, {fromBlock:1, toBlock:"latest"});
                     uriEvent.watch((error, result) => {
-                        let objImage = $.parseJSON(result.args._value).image.slice(3);
+                        let objImage = $.parseJSON(result.args._value).image;
+                        objImage.slice(3);
                         let objTitle = $.parseJSON(result.args._value).title;
                         let objId = result.args._id;
                         $("#myImg-"+(i+1)).prepend("<img src='" + objImage + "'>");
